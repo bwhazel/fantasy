@@ -18,3 +18,11 @@ test('Should welcome me to Fantasy', function() {
     equal(find('h2#title').text(), 'Welcome to Fantasy');
   });
 });
+
+test('Should allow navigating back to root from another page', function() {
+  visit('/about').then(function() {
+    click('a:contains("Home")').then(function() {
+      notEqual(find('h3').text(), 'About');
+    });
+  });
+});
